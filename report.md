@@ -1,6 +1,6 @@
 # Task 1 — Local Network Port Scanning Report
 
-**Author:** Sahil Soni
+**Author:** Your Name
 **Date:** 22 September 2025
 **Internship:** Cybersecurity Internship — Task 1
 
@@ -16,7 +16,7 @@ The goal of this task was to perform reconnaissance on my local network using **
 
 * **Nmap** — Network scanner used for host discovery, port scanning, and service detection.
 * **Wireshark / tcpdump** — Packet capture tools used to monitor traffic during scans.
-* **OS:** Kali Linux  
+* **OS:** Ubuntu 22.04 (example) — replace with your OS if different.
 
 ---
 
@@ -61,6 +61,76 @@ sudo tcpdump -i wlan0 -w scans/scan_capture.pcap
 
   * `tcp.flags.syn == 1 && tcp.flags.ack == 0` (SYN packets)
   * `ip.addr == 192.168.1.101` (filter host traffic)
+
+---
+
+## Troubleshooting: "Host seems down" message
+
+While running the detailed host scan you observed the following Nmap output:
+
+```
+# service/version detection & scripts (more noisy)
+sudo nmap -sS -sV -A -p- 192.168.1.101 -oA scans/host1_full
+
+Starting Nmap 7.95 ( https://nmap.org ) at 2025-09-22 04:33 EDT
+Note: Host seems down. If it is really up, but blocking our ping probes, try -Pn
+Nmap done: 1 IP address (0 hosts up) scanned in 1.79 seconds
+```
+
+### What this means
+
+* Nmap did not receive responses to its host discovery probes (ICMP echo, TCP/ACK, or other), so it assumed the host is down. This can happen even when the host is actually up if a firewall or host-based filter blocks ping or probe packets.
+
+### Immediate troubleshooting steps (run these now)
+
+1. **Ping the host (ICMP)**
+
+```bash
+ping -c 4 192.168.1.101
+```
+
+2. **Check ARP table (works on same L2 network)**
+
+```bash
+arp -an | grep 192.168.1.101
+# or on Linux: ip neigh show | grep 192.168.1.101
+```
+
+3. **Do a ping-only discovery with Nmap**
+
+```bash
+sudo nmap -sn 192.168.1.101 -oN scans/ping_only_192-168-1-101.txt
+```
+
+4. **If host blocks ping, force a scan without host discovery (-Pn)**
+
+```bash
+sudo nmap -Pn -sS -sV -p- 192.168.1.101 -oA scans/host1_full_no_ping
+```
+
+5. **Try a small port-list first** (less noisy, faster)
+
+```bash
+sudo nmap -Pn -sS -sV -p22,80,443 192.168.1.101 -oN scans/host1_small_ports.txt
+```
+
+6. **Verify your network interface and IP range**
+
+```bash
+ip addr show
+ip route
+```
+
+Make sure you're scanning the correct network (for example `192.168.1.0/24`) and that your Kali VM's interface is connected to the network where the target resides.
+
+7. **Check local firewall on your scanning host** — some OS setups restrict raw sockets or block outgoing probes.
+
+8. **If you still get no response**, the host may truly be offline, or it may be on a different subnet or behind a router/NAT. Confirm the device is powered and connected.
+
+### What to add to the report
+
+* Add this troubleshooting block (the commands above) into the Methodology or Appendices so your grader sees that you validated the host state and the reason for using `-Pn` if you chose to use it.
+* Save the Nmap outputs produced by the troubleshooting steps into `scans/` (for example `host1_full_no_ping.nmap`, `host1_small_ports.txt`) and reference them in `report.md`.
 
 ---
 
