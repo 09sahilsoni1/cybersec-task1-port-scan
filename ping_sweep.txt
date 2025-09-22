@@ -1,0 +1,43 @@
+# Nmap 7.95 scan initiated Mon Sep 22 04:32:15 2025 as: /usr/lib/nmap/nmap -sn -oN scans/ping_sweep.txt 192.168.1.0/24
+Nmap scan report for Unit (192.168.1.1)
+Host is up (0.041s latency).
+MAC Address: 14:55:B9:38:72:B0 (Nokia Solutions and Networks GmbH & KG)
+Nmap scan report for 192.168.1.2
+Host is up (0.047s latency).
+MAC Address: 24:B1:05:33:DA:68 (Prama Hikvision India Private Limited)
+Nmap scan report for 192.168.1.4
+Host is up (0.15s latency).
+MAC Address: 1A:7E:D1:47:09:4B (Unknown)
+Nmap scan report for 192.168.1.5
+Host is up (0.12s latency).
+MAC Address: E8:65:D4:CF:92:98 (Tenda Technology,Ltd.Dongguan branch)
+Nmap scan report for 192.168.1.6
+Host is up (0.071s latency).
+MAC Address: 20:57:9E:30:F8:76 (Hunan FN-Link Technology Limited)
+Nmap scan report for 192.168.1.16
+Host is up (0.17s latency).
+MAC Address: 5A:40:D4:64:6A:0D (Unknown)
+Nmap scan report for 192.168.1.52
+Host is up (0.060s latency).
+MAC Address: A4:2A:95:29:63:5A (D-Link International)
+Nmap scan report for 192.168.1.85
+Host is up (0.068s latency).
+MAC Address: 00:57:F1:8D:83:FB (Unknown)
+Nmap scan report for 192.168.1.164
+Host is up (1.3s latency).
+MAC Address: 00:57:F1:04:7D:E6 (Unknown)
+Nmap scan report for 192.168.1.188
+Host is up (0.050s latency).
+MAC Address: 00:57:F1:B7:83:8F (Unknown)
+Nmap scan report for 192.168.1.211
+Host is up (0.025s latency).
+MAC Address: 88:00:33:77:64:F0 (Unknown)
+Nmap scan report for 192.168.1.212
+Host is up (0.00048s latency).
+MAC Address: D4:D2:52:92:2E:6C (Intel Corporate)
+Nmap scan report for 192.168.1.233
+Host is up (0.074s latency).
+MAC Address: F6:3A:80:09:2B:01 (Unknown)
+Nmap scan report for 192.168.1.3
+Host is up.
+# Nmap done at Mon Sep 22 04:32:30 2025 -- 256 IP addresses (14 hosts up) scanned in 15.18 seconds
