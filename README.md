@@ -1,6 +1,6 @@
 # Cyber Security Internship — Task 1: Scan Local Network for Open Ports
 
-**Author:** Your Name  
+**Author:** Sahil Soni
 **Date:** 2025-09-22
 
 ## Objective
